@@ -123,44 +123,6 @@ local function DrawContinent(map, canvas, mapID)
       local shape = ZoneShape(mapID, z.uiMap)
       if shape then
         local r, g, b, a, strong = ColorFor(z)
-        if shape.w and not ns.db.forceBlobs then
-          n = n + 1
-          local t = GetShapeTex(n)
-          if t.mask then t:RemoveMaskTexture(t.mask) end
-          if shape.file then t:SetTexture(shape.file) else t:SetAtlas(shape.atlas) end
-          t:SetTexCoord(0, shape.texX or 1, 0, shape.texY or 1)
-          t:SetBlendMode("BLEND")   -- echte Farbschicht (ADD wäre auf der hellen Karte unsichtbar)
-          t:SetVertexColor(r, g, b, a)
-          -- Werte sind normalerweise 0–1 (Anteil der Karte); sonst schon in Karten-Einheiten
-          local norm = shape.w <= 1.5
-          local sx, sy = norm and W or 1, norm and H or 1
-          t:ClearAllPoints()
-          t:SetPoint("TOPLEFT", canvas, "TOPLEFT", shape.x * sx, -shape.y * sy)
-          t:SetSize(shape.w * sx, shape.h * sy)
-          t:Show()
-        elseif shape.rect then
-          -- Ersatz: weiche Farbfläche in Größe des Gebiets
-          n = n + 1
-          local t = GetShapeTex(n)
-          local minX, maxX, minY, maxY = unpack(shape.rect)
-          t:SetTexture("Interface\\Buttons\\WHITE8X8")
-          t:SetTexCoord(0, 1, 0, 1)
-          if t.CreateMaskTexture or layer.CreateMaskTexture then
-            if not t.mask then
-              t.mask = layer:CreateMaskTexture()
-              t.mask:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-              t.mask:SetAllPoints(t)
-            end
-            t:AddMaskTexture(t.mask)
-          end
-          t:SetBlendMode("BLEND")
-          t:SetVertexColor(r, g, b, a * 0.7)
-          local w, h = (maxX - minX) * W * 0.75, (maxY - minY) * H * 0.75
-          t:ClearAllPoints()
-          t:SetPoint("CENTER", canvas, "TOPLEFT", shape.cx * W, -shape.cy * H)
-          t:SetSize(w, h)
-          t:Show()
-        end
         m = m + 1
         local l = GetLabel(m)
         l.zone = z
@@ -175,7 +137,7 @@ local function DrawContinent(map, canvas, mapID)
       end
     end
   end
-  for i = n + 1, #shapes do shapes[i]:Hide() end
+  for i = 1, #shapes do shapes[i]:Hide() end   -- Flächen bewusst aus, nur farbige Zahlen
   for i = m + 1, #labels do labels[i]:Hide() end
 end
 
