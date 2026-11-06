@@ -6,6 +6,7 @@
 ## Version: @project-version@
 ## SavedVariables: DFGDB
 ## X-Website: https://twitch.tv/itsdrescher_
+## X-Curse-Project-ID: 1787896
 
 Locale.lua
 Data.lua
