@@ -1,0 +1,51 @@
+# Drescher's Field Guide
+
+**Leveling & farming companion for World of Warcraft: Forever** (also runs on Classic Era).
+*Built live on stream – [twitch.tv/itsdrescher_](https://twitch.tv/itsdrescher_)*
+
+🇩🇪 Deutsche Beschreibung weiter unten.
+
+## Features
+
+- **Zone map by level** – on the continent map every zone is tinted for *your* level:
+  🟢 good for you · 🟠 a bit too high · 🔴 too high · ⚪ too low. Labels show the level range.
+- **Zone info on every zone map** – level range, rating, dungeons, alternatives
+  (e.g. *Riverglades* instead of *Stranglethorn Vale*) and all materials you can find there.
+- **Route window** – "Level here now", "Dungeons for you" and "Up next", for Alliance and Horde.
+  Click a zone to open it on the map. New Forever zones and dungeons are marked with ★.
+- **Material finder** – pick an herb, ore, cloth or leather on the map button and every zone
+  that has it lights up gold. Item names appear in your game language.
+
+## Commands
+
+| Command | Function |
+|---|---|
+| `/fg` | Show/hide the route window |
+| `/fg map` | Map overlay on/off |
+| `/fg zones` | List zone IDs (helps with bug reports) |
+| `/fg reset` | Reset window position |
+
+## Roadmap
+
+- **Phase 2:** Guild-shared gathering map – every herb and ore your guild collects appears as a pin.
+- Step-by-step data for the new Forever zones as it gets collected.
+
+Data for the new Forever zones is based on announcements and will be refined while playing.
+Found something wrong? Open an issue or tell me on stream.
+
+---
+
+## 🇩🇪 Deutsch
+
+**Leveling- & Farm-Begleiter für WoW Forever.**
+
+- **Level-Karte:** Auf der Kontinentkarte sind alle Gebiete nach *deinem* Level eingefärbt.
+- **Gebiets-Infos** auf jeder Zonenkarte: Level-Spanne, Dungeons, Alternativen, Materialien.
+- **Routen-Fenster:** „Jetzt hier leveln“, „Dungeons für dich“, „Als Nächstes“ – für Allianz und Horde.
+- **Material-Suche:** Kraut, Erz, Stoff oder Leder auswählen – alle passenden Gebiete leuchten gold.
+
+Befehle: `/fg`, `/fg map`, `/fg zones`, `/fg reset`
+
+## License
+
+MIT

@@ -1,0 +1,14 @@
+## Interface: 16001
+## Title: |cffe0b040Drescher's Field Guide|r
+## Notes: Leveling & farming companion: zone map by level, zone route and materials.
+## Notes-deDE: Leveling- & Farm-Begleiter: Gebiete nach Level, Route und Materialien.
+## Author: itsdrescher
+## Version: @project-version@
+## SavedVariables: DFGDB
+## X-Website: https://twitch.tv/itsdrescher_
+
+Locale.lua
+Data.lua
+Core.lua
+MapOverlay.lua
+Route.lua

@@ -1,0 +1,6 @@
+package-as: DreschersFieldGuide
+
+ignore:
+  - README.md
+  - .github
+  - media
