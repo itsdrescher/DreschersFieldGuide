@@ -66,8 +66,11 @@ function ns.ResolveZones()
     if z.map and C_Map.GetMapInfo then
       local info = C_Map.GetMapInfo(z.map)
       if info and info.name then
+        -- Bekannte Karten-Kennung: gilt, wenn sie noch zum richtigen Kontinent gehört
+        -- (Namen weichen je nach Sprache/Schreibweise ab, z. B. Apostrophe)
         local n = norm(info.name)
-        if n == norm(z.en) or n == norm(z.de) or n:find(norm(z.de), 1, true) or n:find(norm(z.en), 1, true) then
+        local nameOK = n == norm(z.en) or n == norm(z.de) or n:find(norm(z.de), 1, true) or n:find(norm(z.en), 1, true)
+        if nameOK or not z.cont or info.parentMapID == z.cont then
           found = z.map
           z.resolvedName = info.name
         end

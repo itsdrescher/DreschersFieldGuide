@@ -80,8 +80,8 @@ ns.ZONES = {
   { key = "stranglethorn", map = 1434, cont = 1415, min = 30, max = 45, faction = "C", en = "Stranglethorn Vale", de = "Schlingendorntal",
     herbs = { H.liferoot, H.fadeleaf, H.goldthorn, H.khadgar, H.purplelotus, H.stranglekelp }, ores = { O.iron, O.gold, O.silver, O.mithril, O.truesilver },
     alt = "riverglades" },
-  { key = "riverglades", cont = 1415, min = 36, max = 44, faction = "C", en = "Riverglades", de = "Riverglades", new = true,
-    find = { "riverglade", "flussau", "flusslicht" }, alt = "stranglethorn" },
+  { key = "riverglades", map = 2548, cont = 1415, min = 36, max = 44, faction = "C", en = "Riverglades", de = "Flusslande", new = true,
+    find = { "riverglade", "flusslande" }, alt = "stranglethorn" },
   { key = "badlands", map = 1418, cont = 1415, min = 35, max = 45, faction = "C", en = "Badlands", de = "Ödland",
     herbs = { H.kingsblood, H.fadeleaf, H.goldthorn, H.khadgar, H.firebloom }, ores = { O.iron, O.gold, O.mithril, O.truesilver } },
   { key = "swamp", map = 1435, cont = 1415, min = 35, max = 45, faction = "C", en = "Swamp of Sorrows", de = "Sümpfe des Elends",
@@ -144,7 +144,7 @@ ns.ZONES = {
     herbs = {}, ores = {}, noRoute = true },
 
   ---------------------------------------------------------------- Zephras Isle (Himmelsgeborene)
-  { key = "zephras", min = 1, max = 12, faction = "C", en = "Zephras Isle", de = "Zephras", new = true,
+  { key = "zephras", map = 2521, cont = 947, min = 1, max = 12, faction = "C", en = "Zephras Isle", de = "Insel Zephras", new = true,
     find = { "zephras" }, skyborneOnly = true },
 }
 
