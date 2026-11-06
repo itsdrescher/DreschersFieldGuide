@@ -154,9 +154,32 @@ end
 -- Zonenkarte: Infobox
 ---------------------------------------------------------------------------
 local function CreateInfoBox(map)
-  local box = CreateFrame("Frame", nil, map.ScrollContainer or map, BackdropTemplateMixin and "BackdropTemplate" or nil)
-  box:SetPoint("TOPLEFT", map.ScrollContainer or map, "TOPLEFT", 8, -8)
+  local parent = map.ScrollContainer or map
+  local box = CreateFrame("Frame", nil, parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
   box:SetSize(250, 60)
+
+  -- Position: frei verschiebbar, wird gespeichert (relativ zur linken oberen Kartenecke)
+  local function applyPos()
+    local p = ns.db.infoPos or { 46, -6 }
+    box:ClearAllPoints()
+    box:SetPoint("TOPLEFT", parent, "TOPLEFT", p[1], p[2])
+  end
+  applyPos()
+  box:SetMovable(true)
+  box:RegisterForDrag("LeftButton")
+  box:SetScript("OnDragStart", function(self) GameTooltip:Hide(); self:StartMoving() end)
+  box:SetScript("OnDragStop", function(self)
+    self:StopMovingOrSizing()
+    local s = self:GetEffectiveScale() / parent:GetEffectiveScale()
+    local x = self:GetLeft() * s - parent:GetLeft()
+    local y = self:GetTop() * s - parent:GetTop()
+    -- innerhalb der Karte halten
+    x = math.max(0, math.min(x, parent:GetWidth() - self:GetWidth()))
+    y = math.min(0, math.max(y, -(parent:GetHeight() - self:GetHeight())))
+    ns.db.infoPos = { x, y }
+    applyPos()
+  end)
+  ns.ResetInfoPosition = function() ns.db.infoPos = nil; applyPos() end
   if box.SetBackdrop then
     box:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 1 })
     box:SetBackdropColor(0.04, 0.04, 0.06, 0.85)
@@ -283,7 +306,7 @@ local function CreateModeButton(map)
   local parent = map.ScrollContainer or map
   local b = CreateFrame("Button", nil, parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
   b:SetSize(200, 22)
-  b:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -8, -8)
+  b:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -46, -6)
   if b.SetBackdrop then
     b:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 1 })
     b:SetBackdropColor(0.04, 0.04, 0.06, 0.85)

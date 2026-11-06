@@ -10,6 +10,9 @@ local defaults = {
   zoneDump = nil,
 }
 
+-- Markierung für neue Forever-Inhalte (gelber Stern aus den Zielmarkierungen)
+ns.NEW_ICON = "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:12:12:0:0|t"
+
 function ns.Print(msg) print("|cffe0b040Field Guide:|r " .. msg) end
 
 ---------------------------------------------------------------------------
@@ -238,6 +241,7 @@ SlashCmdList.DRESCHERSFIELDGUIDE = function(input)
   elseif cmd == "reset" then
     ns.db.routePoint = nil
     if ns.ResetRoutePosition then ns.ResetRoutePosition() end
+    if ns.ResetInfoPosition then ns.ResetInfoPosition() end
   else
     ns.Print(L.TITLE)
     for _, line in ipairs({ L.HELP_ROUTE, L.HELP_MAP, L.HELP_ZONES, L.HELP_RESET }) do print("  " .. line) end

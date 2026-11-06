@@ -35,7 +35,7 @@ local L = {
   HELP_ROUTE   = "|cffffffff/fg|r – show/hide the route window",
   HELP_MAP     = "|cffffffff/fg map|r – switch map overlay on/off",
   HELP_ZONES   = "|cffffffff/fg zones|r – list zone IDs (for bug reports)",
-  HELP_RESET   = "|cffffffff/fg reset|r – reset window position",
+  HELP_RESET   = "|cffffffff/fg reset|r – reset window and map box positions",
   ZONES_SAVED  = "%d zones listed and saved.",
   NOT_FOUND    = "not found on map yet",
   CREDIT       = "Built live on stream: twitch.tv/itsdrescher_",
@@ -73,7 +73,7 @@ if GetLocale() == "deDE" then
   L.HELP_ROUTE = "|cffffffff/fg|r – Routen-Fenster ein/aus"
   L.HELP_MAP   = "|cffffffff/fg map|r – Karten-Anzeige ein/aus"
   L.HELP_ZONES = "|cffffffff/fg zones|r – Gebiets-IDs auflisten (für Fehlermeldungen)"
-  L.HELP_RESET = "|cffffffff/fg reset|r – Fensterposition zurücksetzen"
+  L.HELP_RESET = "|cffffffff/fg reset|r – Fenster und Karten-Infobox zurücksetzen"
   L.ZONES_SAVED = "%d Gebiete aufgelistet und gespeichert."
   L.NOT_FOUND  = "noch nicht auf der Karte gefunden"
   L.CREDIT     = "Live entwickelt im Stream: twitch.tv/itsdrescher_"

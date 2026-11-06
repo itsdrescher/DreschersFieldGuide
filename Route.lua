@@ -119,13 +119,13 @@ function ns.RefreshRoute()
   if #now == 0 then line("|cff999999" .. L.NOTHING .. "|r", "") end
   for _, z in ipairs(now) do
     local _, cr, cg, cb = ns.Rate(z, level)
-    line(ns.ZoneName(z) .. (z.new and " |cff66ccff★|r" or ""), ("%d–%d"):format(z.min, z.max), z, cr, cg, cb)
+    line(ns.ZoneName(z) .. (z.new and " " .. ns.NEW_ICON or ""), ("%d–%d"):format(z.min, z.max), z, cr, cg, cb)
   end
   if #dungeons > 0 then
     y = y - 4
     header(L.DUNGEONS)
     for _, d in ipairs(dungeons) do
-      line((ns.IS_DE and d.de or d.en) .. (d.new and " |cff66ccff★|r" or ""), ("%d–%d"):format(d.min, d.max), ns.ZONE_BY_KEY[d.zone])
+      line((ns.IS_DE and d.de or d.en) .. (d.new and " " .. ns.NEW_ICON or ""), ("%d–%d"):format(d.min, d.max), ns.ZONE_BY_KEY[d.zone])
     end
   end
   if #nextUp > 0 then
@@ -133,7 +133,7 @@ function ns.RefreshRoute()
     header(L.NEXT)
     for _, z in ipairs(nextUp) do
       local _, cr, cg, cb = ns.Rate(z, level)
-      line(ns.ZoneName(z) .. (z.new and " |cff66ccff★|r" or ""), ("%d–%d"):format(z.min, z.max), z, cr, cg, cb)
+      line(ns.ZoneName(z) .. (z.new and " " .. ns.NEW_ICON or ""), ("%d–%d"):format(z.min, z.max), z, cr, cg, cb)
     end
   end
   for k = i + 1, #rows do rows[k]:Hide() end
