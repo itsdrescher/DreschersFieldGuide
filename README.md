@@ -15,6 +15,9 @@
   Click a zone to open it on the map. New Forever zones and dungeons are marked with ★.
 - **Material finder** – pick an herb, ore, cloth or leather on the map button and every zone
   that has it lights up gold. Item names appear in your game language.
+- **Gathering spots** – every herb, ore vein and fishing pool you gather is saved and shared
+  with your guild. They show up as icons on the zone map – filter them via the map button.
+  Collected spots will ship with future versions, so the map keeps growing.
 
 ## Commands
 
@@ -27,7 +30,6 @@
 
 ## Roadmap
 
-- **Phase 2:** Guild-shared gathering map – every herb and ore your guild collects appears as a pin.
 - Step-by-step data for the new Forever zones as it gets collected.
 
 Data for the new Forever zones is based on announcements and will be refined while playing.
@@ -43,6 +45,7 @@ Found something wrong? Open an issue or tell me on stream.
 - **Gebiets-Infos** auf jeder Zonenkarte: Level-Spanne, Dungeons, Alternativen, Materialien.
 - **Routen-Fenster:** „Jetzt hier leveln“, „Dungeons für dich“, „Als Nächstes“ – für Allianz und Horde.
 - **Material-Suche:** Kraut, Erz, Stoff oder Leder auswählen – alle passenden Gebiete leuchten gold.
+- **Fundorte:** Jedes gesammelte Kraut, Erz und jeder Fischschwarm wird gespeichert und mit der Gilde geteilt.
 
 Befehle: `/fg`, `/fg map`, `/fg zones`, `/fg reset`
 

@@ -39,6 +39,13 @@ local L = {
   ZONES_SAVED  = "%d zones listed and saved.",
   NOT_FOUND    = "not found on map yet",
   CREDIT       = "Built live on stream: twitch.tv/itsdrescher_",
+  FISH         = "Fishing pools",
+  SEEN         = "Gathered %d times",
+  FOUND_BY     = "Found by %s",
+  NODES_MENU   = "Gathering spots",
+  NODES_ALL    = "Show all",
+  NODES_OFF    = "Hide",
+  NODES_COUNT  = "%d gathering spots collected (shared with your guild)",
 }
 
 if GetLocale() == "deDE" then
@@ -77,6 +84,13 @@ if GetLocale() == "deDE" then
   L.ZONES_SAVED = "%d Gebiete aufgelistet und gespeichert."
   L.NOT_FOUND  = "noch nicht auf der Karte gefunden"
   L.CREDIT     = "Live entwickelt im Stream: twitch.tv/itsdrescher_"
+  L.FISH       = "Fischschwärme"
+  L.SEEN       = "%d-mal gesammelt"
+  L.FOUND_BY   = "Gefunden von %s"
+  L.NODES_MENU = "Fundorte"
+  L.NODES_ALL  = "Alle anzeigen"
+  L.NODES_OFF  = "Ausblenden"
+  L.NODES_COUNT = "%d Fundorte gesammelt (geteilt mit deiner Gilde)"
 end
 
 ns.L = L

@@ -269,6 +269,10 @@ local function OpenMenu(owner)
           grp:CreateButton(ns.ItemName(id), function() SetMode(id) end)
         end
       end
+      local nodes = root:CreateButton(L.NODES_MENU)
+      for _, o in ipairs({ { "all", L.NODES_ALL }, { "herb", L.HERBS }, { "ore", L.ORES }, { "fish", L.FISH }, { "off", L.NODES_OFF } }) do
+        nodes:CreateButton(o[2], function() ns.db.nodeFilter = o[1]; if ns.db.mode ~= "level" and type(ns.db.mode) ~= "number" then ns.db.mode = "level" end; ns.RefreshOverlay() end)
+      end
       root:CreateButton(L.MODE_OFF, function() SetMode("off") end)
     end)
     return
@@ -288,6 +292,12 @@ local function OpenMenu(owner)
     mats.menuList[#mats.menuList + 1] = grp
   end
   menu[#menu + 1] = mats
+  local nodes = { text = L.NODES_MENU, notCheckable = true, hasArrow = true, menuList = {} }
+  for _, o in ipairs({ { "all", L.NODES_ALL }, { "herb", L.HERBS }, { "ore", L.ORES }, { "fish", L.FISH }, { "off", L.NODES_OFF } }) do
+    nodes.menuList[#nodes.menuList + 1] = { text = o[2], notCheckable = true, func = function()
+      ns.db.nodeFilter = o[1]; if ns.db.mode == "off" then ns.db.mode = "level" end; ns.RefreshOverlay(); CloseDropDownMenus() end }
+  end
+  menu[#menu + 1] = nodes
   menu[#menu + 1] = { text = L.MODE_OFF, notCheckable = true, func = function() SetMode("off") end }
   ns.dropdown = ns.dropdown or CreateFrame("Frame", "DFGMapDropdown", UIParent, "UIDropDownMenuTemplate")
   EasyMenu(menu, ns.dropdown, owner, 0, 0, "MENU")
@@ -309,6 +319,7 @@ local function CreateModeButton(map)
   b:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
     GameTooltip:AddLine(L.TITLE, 0.88, 0.69, 0.25)
+    if ns.NodeCount then GameTooltip:AddLine(L.NODES_COUNT:format(ns.NodeCount()), 1, 1, 1) end
     GameTooltip:AddLine(L.CREDIT, 0.6, 0.6, 0.6)
     GameTooltip:Show()
   end)
@@ -374,6 +385,7 @@ function ns.RefreshOverlay()
   end
 
   if zone and not off then ShowInfo(map, zone) elseif infoBox then infoBox:Hide() end
+  if ns.RefreshNodes then ns.RefreshNodes() end
 end
 
 function ns.InitOverlay()

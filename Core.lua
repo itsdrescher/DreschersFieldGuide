@@ -203,6 +203,7 @@ f:SetScript("OnEvent", function(_, event, arg)
     ns.ResolveZones()
     if ns.InitOverlay then ns.InitOverlay() end
     if ns.InitRoute then ns.InitRoute() end
+    if ns.InitNodes then ns.InitNodes() end
     local v = (C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata)(ADDON, "Version") or ""
     if v:find("@", 1, true) then v = "dev" end
     ns.Print(("v%s %s"):format(v, L.LOADED))
