@@ -74,7 +74,7 @@ local function ColorFor(z)
     return 0.2, 0.2, 0.2, 0.35, false
   end
   local status, r, g, b = ns.Rate(z)
-  local a = (status == "fits") and 0.5 or (status == "soon") and 0.42 or (status == "hard") and 0.32 or 0.22
+  local a = (status == "fits") and 0.55 or (status == "soon") and 0.45 or (status == "hard") and 0.38 or 0.3
   return r, g, b, a, status == "fits" or status == "soon"
 end
 
@@ -129,7 +129,7 @@ local function DrawContinent(map, canvas, mapID)
           if t.mask then t:RemoveMaskTexture(t.mask) end
           if shape.file then t:SetTexture(shape.file) else t:SetAtlas(shape.atlas) end
           t:SetTexCoord(0, shape.texX or 1, 0, shape.texY or 1)
-          t:SetBlendMode("ADD")
+          t:SetBlendMode("BLEND")   -- echte Farbschicht (ADD wäre auf der hellen Karte unsichtbar)
           t:SetVertexColor(r, g, b, a)
           -- Werte sind normalerweise 0–1 (Anteil der Karte); sonst schon in Karten-Einheiten
           local norm = shape.w <= 1.5
