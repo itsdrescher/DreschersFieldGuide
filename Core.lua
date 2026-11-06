@@ -238,6 +238,13 @@ SlashCmdList.DRESCHERSFIELDGUIDE = function(input)
     ns.db.zoneDump = dump
     for _, line in ipairs(dump) do print("  " .. line) end
     ns.Print(L.ZONES_SAVED:format(n))
+  elseif cmd == "debug" then
+    if ns.OverlayDebug then ns.OverlayDebug() end
+  elseif cmd == "blobs" then
+    -- Testschalter: Ersatz-Flächen statt echter Umrisse
+    ns.db.forceBlobs = not ns.db.forceBlobs
+    ns.Print("Ersatz-Flächen: " .. (ns.db.forceBlobs and "an" or "aus"))
+    if ns.RefreshOverlay then ns.RefreshOverlay() end
   elseif cmd == "reset" then
     ns.db.routePoint = nil
     if ns.ResetRoutePosition then ns.ResetRoutePosition() end

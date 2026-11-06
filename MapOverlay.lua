@@ -29,12 +29,13 @@ local function PointInZone(contMap, zoneMap)
   if not (C_Map.GetMapRectOnMap and C_Map.GetMapInfoAtPosition) then return end
   local ok, minX, maxX, minY, maxY = pcall(C_Map.GetMapRectOnMap, zoneMap, contMap)
   if not ok or not minX then return end
+  local rect = { minX, maxX, minY, maxY }
   local best
   for _, fy in ipairs({ 0.5, 0.4, 0.6, 0.3, 0.7 }) do
     for _, fx in ipairs({ 0.5, 0.4, 0.6, 0.3, 0.7, 0.2, 0.8 }) do
       local x, y = minX + (maxX - minX) * fx, minY + (maxY - minY) * fy
       local ok2, info = pcall(C_Map.GetMapInfoAtPosition, contMap, x, y)
-      if ok2 and info and info.mapID == zoneMap then return x, y end
+      if ok2 and info and info.mapID == zoneMap then return x, y, rect end
       best = best or { x, y }
     end
   end
@@ -44,14 +45,19 @@ end
 local function ZoneShape(contMap, zoneMap)
   local key = contMap .. ":" .. zoneMap
   if shapeCache[key] ~= nil then return shapeCache[key] end
-  local x, y = PointInZone(contMap, zoneMap)
+  local x, y, rect = PointInZone(contMap, zoneMap)
   local shape = false
-  if x and C_Map.GetMapHighlightInfoAtPosition then
-    local ok, fileID, atlasID, texX, texY, w, h, posX, posY = pcall(C_Map.GetMapHighlightInfoAtPosition, contMap, x, y)
-    if ok and (fileID or atlasID) and w and w > 0 then
-      shape = { file = fileID, atlas = atlasID, texX = texX, texY = texY, w = w, h = h, x = posX, y = posY, cx = x, cy = y }
-    else
-      shape = { cx = x, cy = y }   -- nur Beschriftung möglich
+  if x then
+    shape = { cx = x, cy = y, rect = rect }
+    if C_Map.GetMapHighlightInfoAtPosition then
+      local ok, fileID, atlasID, texX, texY, w, h, posX, posY = pcall(C_Map.GetMapHighlightInfoAtPosition, contMap, x, y)
+      local hasFile = type(fileID) == "number" and fileID > 0
+      local hasAtlas = type(atlasID) == "string" and atlasID ~= ""
+      if ok and (hasFile or hasAtlas) and type(w) == "number" and w > 0 then
+        shape.file = hasFile and fileID or nil
+        shape.atlas = hasAtlas and atlasID or nil
+        shape.texX, shape.texY, shape.w, shape.h, shape.x, shape.y = texX, texY, w, h, posX, posY
+      end
     end
   end
   shapeCache[key] = shape
@@ -117,10 +123,11 @@ local function DrawContinent(map, canvas, mapID)
       local shape = ZoneShape(mapID, z.uiMap)
       if shape then
         local r, g, b, a, strong = ColorFor(z)
-        if shape.w then
+        if shape.w and not ns.db.forceBlobs then
           n = n + 1
           local t = GetShapeTex(n)
-          if shape.atlas and t.SetAtlas then t:SetAtlas(shape.atlas) else t:SetTexture(shape.file) end
+          if t.mask then t:RemoveMaskTexture(t.mask) end
+          if shape.file then t:SetTexture(shape.file) else t:SetAtlas(shape.atlas) end
           t:SetTexCoord(0, shape.texX or 1, 0, shape.texY or 1)
           t:SetBlendMode("ADD")
           t:SetVertexColor(r, g, b, a)
@@ -130,6 +137,28 @@ local function DrawContinent(map, canvas, mapID)
           t:ClearAllPoints()
           t:SetPoint("TOPLEFT", canvas, "TOPLEFT", shape.x * sx, -shape.y * sy)
           t:SetSize(shape.w * sx, shape.h * sy)
+          t:Show()
+        elseif shape.rect then
+          -- Ersatz: weiche Farbfläche in Größe des Gebiets
+          n = n + 1
+          local t = GetShapeTex(n)
+          local minX, maxX, minY, maxY = unpack(shape.rect)
+          t:SetTexture("Interface\\Buttons\\WHITE8X8")
+          t:SetTexCoord(0, 1, 0, 1)
+          if t.CreateMaskTexture or layer.CreateMaskTexture then
+            if not t.mask then
+              t.mask = layer:CreateMaskTexture()
+              t.mask:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+              t.mask:SetAllPoints(t)
+            end
+            t:AddMaskTexture(t.mask)
+          end
+          t:SetBlendMode("BLEND")
+          t:SetVertexColor(r, g, b, a * 0.7)
+          local w, h = (maxX - minX) * W * 0.75, (maxY - minY) * H * 0.75
+          t:ClearAllPoints()
+          t:SetPoint("CENTER", canvas, "TOPLEFT", shape.cx * W, -shape.cy * H)
+          t:SetSize(w, h)
           t:Show()
         end
         m = m + 1
@@ -328,6 +357,28 @@ end
 ---------------------------------------------------------------------------
 -- Aktualisieren
 ---------------------------------------------------------------------------
+-- /fg debug: zeigt, was WoW für die Umrisse der Gebiete liefert
+function ns.OverlayDebug()
+  local map = Map()
+  local mapID = map and map:GetMapID()
+  if not map or not map:IsShown() then ns.Print("Bitte zuerst die Kontinentkarte öffnen (M).") return end
+  local count = 0
+  for _, z in ipairs(ns.ZONES) do
+    if z.uiMap and z.contMap == mapID and count < 3 then
+      count = count + 1
+      local x, y = PointInZone(mapID, z.uiMap)
+      if not x then
+        print(("  %s: kein Punkt im Gebiet gefunden"):format(ns.ZoneName(z)))
+      else
+        local res = { pcall(C_Map.GetMapHighlightInfoAtPosition, mapID, x, y) }
+        for i = 1, #res do res[i] = tostring(res[i]) end
+        print(("  %s @ %.3f/%.3f → %s"):format(ns.ZoneName(z), x, y, table.concat(res, ", ")))
+      end
+    end
+  end
+  print(("  Karte %s, Gebiete auf dieser Karte: %d"):format(tostring(mapID), count))
+end
+
 function ns.RefreshOverlay()
   local map = Map()
   if not map or not map:IsShown() or not map.GetCanvas then return end
