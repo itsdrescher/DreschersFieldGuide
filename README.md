@@ -7,12 +7,12 @@
 
 ## Features
 
-- **Zone map by level** – on the continent map every zone is tinted for *your* level:
-  🟢 good for you · 🟠 a bit too high · 🔴 too high · ⚪ too low. Labels show the level range.
+- **Zone map by level** – on the continent map every zone shows its level range, colored for *your* level:
+  🟢 good for you · 🟠 a bit too high · 🔴 too high · ⚪ too low.
 - **Zone info on every zone map** – level range, rating, dungeons, alternatives
   (e.g. *Riverglades* instead of *Stranglethorn Vale*) and all materials you can find there.
 - **Route window** – "Level here now", "Dungeons for you" and "Up next", for Alliance and Horde.
-  Click a zone to open it on the map. New Forever zones and dungeons are marked with ★.
+  Click a zone to open it on the map. New Forever zones and dungeons are marked with a star.
 - **Material finder** – pick an herb, ore, cloth or leather on the map button and every zone
   that has it lights up gold. Item names appear in your game language.
 - **Gathering spots** – every herb, ore vein and fishing pool you gather is saved and shared
@@ -26,7 +26,7 @@
 | `/fg` | Show/hide the route window |
 | `/fg map` | Map overlay on/off |
 | `/fg zones` | List zone IDs (helps with bug reports) |
-| `/fg reset` | Reset window position |
+| `/fg reset` | Reset window and map box position |
 
 ## Roadmap
 
@@ -41,7 +41,7 @@ Found something wrong? Open an issue or tell me on stream.
 
 **Leveling- & Farm-Begleiter für WoW Forever.**
 
-- **Level-Karte:** Auf der Kontinentkarte sind alle Gebiete nach *deinem* Level eingefärbt.
+- **Level-Karte:** Auf der Kontinentkarte steht bei jedem Gebiet die Level-Spanne, eingefärbt nach *deinem* Level.
 - **Gebiets-Infos** auf jeder Zonenkarte: Level-Spanne, Dungeons, Alternativen, Materialien.
 - **Routen-Fenster:** „Jetzt hier leveln“, „Dungeons für dich“, „Als Nächstes“ – für Allianz und Horde.
 - **Material-Suche:** Kraut, Erz, Stoff oder Leder auswählen – alle passenden Gebiete leuchten gold.
