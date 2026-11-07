@@ -6,3 +6,7 @@ local ADDON, ns = ...
 
 ns.BUNDLED_NODES = {
 }
+
+-- Mitgelieferte Flugzeiten: ["Start>Ziel"] = Sekunden
+ns.BUNDLED_FLIGHTS = {
+}

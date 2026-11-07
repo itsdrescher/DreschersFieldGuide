@@ -18,6 +18,9 @@
 - **Gathering spots** – every herb, ore vein and fishing pool you gather is saved and shared
   with your guild. They show up as icons on the zone map – filter them via the map button.
   Collected spots will ship with future versions, so the map keeps growing.
+- **Flight times** – hover a destination on the flight map to see how long the flight takes.
+  A movable timer counts down while you fly. Every flight is measured and shared with your guild;
+  routes nobody has flown yet show an estimate.
 
 ## Commands
 
@@ -46,6 +49,7 @@ Found something wrong? Open an issue or tell me on stream.
 - **Routen-Fenster:** „Jetzt hier leveln“, „Dungeons für dich“, „Als Nächstes“ – für Allianz und Horde.
 - **Material-Suche:** Kraut, Erz, Stoff oder Leder auswählen – alle passenden Gebiete leuchten gold.
 - **Fundorte:** Jedes gesammelte Kraut, Erz und jeder Fischschwarm wird gespeichert und mit der Gilde geteilt.
+- **Flugzeiten:** Auf der Flugkarte steht beim Ziel die Flugdauer, während des Flugs läuft ein verschiebbarer Timer. Jeder Flug wird gemessen und mit der Gilde geteilt.
 
 Befehle: `/fg`, `/fg map`, `/fg zones`, `/fg reset`
 

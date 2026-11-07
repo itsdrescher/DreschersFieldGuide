@@ -46,6 +46,10 @@ local L = {
   NODES_ALL    = "Show all",
   NODES_OFF    = "Hide",
   NODES_COUNT  = "%d gathering spots collected (shared with your guild)",
+  FLIGHT_TIME  = "Flight time: %s",
+  FLIGHT_EST   = "Flight time: ~%s (estimated)",
+  FLIGHT_TO    = "Flying to %s",
+  FLIGHT_SOON  = "landing",
 }
 
 if GetLocale() == "deDE" then
@@ -91,6 +95,10 @@ if GetLocale() == "deDE" then
   L.NODES_ALL  = "Alle anzeigen"
   L.NODES_OFF  = "Ausblenden"
   L.NODES_COUNT = "%d Fundorte gesammelt (geteilt mit deiner Gilde)"
+  L.FLIGHT_TIME = "Flugzeit: %s"
+  L.FLIGHT_EST  = "Flugzeit: ca. %s (geschätzt)"
+  L.FLIGHT_TO   = "Flug nach %s"
+  L.FLIGHT_SOON = "Landung"
 end
 
 ns.L = L

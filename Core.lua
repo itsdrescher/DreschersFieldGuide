@@ -204,6 +204,7 @@ f:SetScript("OnEvent", function(_, event, arg)
     if ns.InitOverlay then ns.InitOverlay() end
     if ns.InitRoute then ns.InitRoute() end
     if ns.InitNodes then ns.InitNodes() end
+    if ns.InitFlight then ns.InitFlight() end
     local v = (C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata)(ADDON, "Version") or ""
     if v:find("@", 1, true) then v = "dev" end
     ns.Print(("v%s %s"):format(v, L.LOADED))
@@ -245,6 +246,7 @@ SlashCmdList.DRESCHERSFIELDGUIDE = function(input)
     ns.db.routePoint = nil
     if ns.ResetRoutePosition then ns.ResetRoutePosition() end
     if ns.ResetInfoPosition then ns.ResetInfoPosition() end
+    if ns.ResetFlightBar then ns.ResetFlightBar() end
   else
     ns.Print(L.TITLE)
     for _, line in ipairs({ L.HELP_ROUTE, L.HELP_MAP, L.HELP_ZONES, L.HELP_RESET }) do print("  " .. line) end
