@@ -50,6 +50,10 @@ local L = {
   FLIGHT_EST   = "Flight time: ~%s (estimated)",
   FLIGHT_TO    = "Flying to %s",
   FLIGHT_SOON  = "landing",
+  MM_LEFT      = "Left-click: route window on/off",
+  MM_RIGHT     = "Right-click: map overlay on/off",
+  MM_DRAG      = "Drag: move button",
+  HELP_MINIMAP = "|cffffffff/fg minimap|r – show/hide the minimap button",
 }
 
 if GetLocale() == "deDE" then
@@ -99,6 +103,10 @@ if GetLocale() == "deDE" then
   L.FLIGHT_EST  = "Flugzeit: ca. %s (geschätzt)"
   L.FLIGHT_TO   = "Flug nach %s"
   L.FLIGHT_SOON = "Landung"
+  L.MM_LEFT     = "Linksklick: Routen-Fenster an/aus"
+  L.MM_RIGHT    = "Rechtsklick: Karten-Anzeige an/aus"
+  L.MM_DRAG     = "Ziehen: Knopf verschieben"
+  L.HELP_MINIMAP = "|cffffffff/fg minimap|r – Minimap-Knopf ein/aus"
 end
 
 ns.L = L

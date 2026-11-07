@@ -5,6 +5,8 @@
 ## Author: itsdrescher
 ## Version: @project-version@
 ## SavedVariables: DFGDB
+## IconTexture: Interface\AddOns\DreschersFieldGuide\icon
+## AddonCompartmentFunc: DreschersFieldGuide_OnCompartmentClick
 ## X-Website: https://twitch.tv/itsdrescher_
 ## X-Curse-Project-ID: 1787896
 
@@ -16,3 +18,4 @@ Route.lua
 Nodes.lua
 NodesData.lua
 Flight.lua
+Minimap.lua

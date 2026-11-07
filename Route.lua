@@ -138,7 +138,16 @@ function ns.RefreshRoute()
   end
   for k = i + 1, #rows do rows[k]:Hide() end
   frame.title:SetText(("%s  |cffffffff· %s %d|r"):format(L.TITLE, L.LEVEL, level))
-  frame:SetHeight(-y + 10)
+  if ns.db.routeCollapsed then
+    for k = 1, #rows do rows[k]:Hide() end
+    frame:SetHeight(28)
+    frame.minBtn:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up")
+    frame.minBtn:SetPushedTexture("Interface\\Buttons\\UI-PlusButton-Down")
+  else
+    frame:SetHeight(-y + 10)
+    frame.minBtn:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up")
+    frame.minBtn:SetPushedTexture("Interface\\Buttons\\UI-MinusButton-Down")
+  end
 end
 
 ---------------------------------------------------------------------------
@@ -179,6 +188,17 @@ function ns.InitRoute()
   close:SetPoint("TOPRIGHT", 3, 3)
   close:SetScale(0.8)
   close:SetScript("OnClick", function() ns.ToggleRoute(false) end)
+
+  -- Minimieren: nur die Titelzeile bleibt stehen
+  local minBtn = CreateFrame("Button", nil, frame)
+  minBtn:SetSize(14, 14)
+  minBtn:SetPoint("RIGHT", close, "LEFT", -2, 0)
+  minBtn:SetHighlightTexture("Interface\\Buttons\\UI-PlusButton-Hilight", "ADD")
+  minBtn:SetScript("OnClick", function()
+    ns.db.routeCollapsed = not ns.db.routeCollapsed
+    ns.RefreshRoute()
+  end)
+  frame.minBtn = minBtn
 
   local p = ns.db.routePoint
   if p then frame:SetPoint(p[1], UIParent, p[2], p[3], p[4]) else ns.ResetRoutePosition() end

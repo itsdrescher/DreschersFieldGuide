@@ -28,6 +28,7 @@
 |---|---|
 | `/fg` | Show/hide the route window |
 | `/fg map` | Map overlay on/off |
+| `/fg minimap` | Minimap button on/off |
 | `/fg zones` | List zone IDs (helps with bug reports) |
 | `/fg reset` | Reset window and map box position |
 
@@ -51,7 +52,7 @@ Found something wrong? Open an issue or tell me on stream.
 - **Fundorte:** Jedes gesammelte Kraut, Erz und jeder Fischschwarm wird gespeichert und mit der Gilde geteilt.
 - **Flugzeiten:** Auf der Flugkarte steht beim Ziel die Flugdauer, während des Flugs läuft ein verschiebbarer Timer. Jeder Flug wird gemessen und mit der Gilde geteilt.
 
-Befehle: `/fg`, `/fg map`, `/fg zones`, `/fg reset`
+Befehle: `/fg`, `/fg map`, `/fg minimap`, `/fg zones`, `/fg reset` – oder einfach der Knopf an der Minimap.
 
 ## License
 

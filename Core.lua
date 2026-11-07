@@ -205,6 +205,7 @@ f:SetScript("OnEvent", function(_, event, arg)
     if ns.InitRoute then ns.InitRoute() end
     if ns.InitNodes then ns.InitNodes() end
     if ns.InitFlight then ns.InitFlight() end
+    if ns.InitMinimap then ns.InitMinimap() end
     local v = (C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata)(ADDON, "Version") or ""
     if v:find("@", 1, true) then v = "dev" end
     ns.Print(("v%s %s"):format(v, L.LOADED))
@@ -242,6 +243,8 @@ SlashCmdList.DRESCHERSFIELDGUIDE = function(input)
     ns.Print(L.ZONES_SAVED:format(n))
   elseif cmd == "debug" then
     if ns.OverlayDebug then ns.OverlayDebug() end
+  elseif cmd == "minimap" then
+    if ns.ToggleMinimapButton then ns.ToggleMinimapButton() end
   elseif cmd == "reset" then
     ns.db.routePoint = nil
     if ns.ResetRoutePosition then ns.ResetRoutePosition() end
@@ -249,6 +252,6 @@ SlashCmdList.DRESCHERSFIELDGUIDE = function(input)
     if ns.ResetFlightBar then ns.ResetFlightBar() end
   else
     ns.Print(L.TITLE)
-    for _, line in ipairs({ L.HELP_ROUTE, L.HELP_MAP, L.HELP_ZONES, L.HELP_RESET }) do print("  " .. line) end
+    for _, line in ipairs({ L.HELP_ROUTE, L.HELP_MAP, L.HELP_MINIMAP, L.HELP_ZONES, L.HELP_RESET }) do print("  " .. line) end
   end
 end
